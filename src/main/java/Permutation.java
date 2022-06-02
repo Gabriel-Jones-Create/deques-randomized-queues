@@ -1,3 +1,6 @@
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 /******************************************************************************
  *  Name:    Kevin Wayne
  *  Login:   wayne
@@ -17,7 +20,17 @@
 public class Permutation {
 
   public static void main(String[] args) {
-
+	System.out.println(args[0]);
+	RandomizedQueue<String> kwayway = new RandomizedQueue<String>();
+	  while(!StdIn.isEmpty()) {
+		  String item = StdIn.readString();
+		  StdOut.println(item);
+		  kwayway.enqueue(item);
+	  }
+	  System.out.println("Quit while loop");
+	  for(int i = 0; i < Integer.parseInt(args[0]); i++) {
+		  StdOut.printf("%s /n", kwayway.dequeue());
+	  }
   }
 
 }
