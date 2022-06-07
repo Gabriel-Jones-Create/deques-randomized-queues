@@ -1,54 +1,63 @@
-
-/******************************************************************************
- *  Name:    Kevin Wayne
- *  Login:   wayne
- *  Precept: P02
- *
- *  Partner Name:    N/A
- *  Partner Login:   N/A
- *  Partner Precept: N/A
- *
- *  Compilation:  javac-algs4 Deque.java
- *  Execution:    java-algs4 Deque
- *  Dependencies: Item.java Iterator.java
- *
- *  Description:  Implementing a Deque using linked structures
- ******************************************************************************/
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+/**
+ * @author gabrieljones
+ *
+ *         Represents a program which directs the addition and removal of items
+ *         from a list
+ *
+ * @param <Item> is the item to be added or removed from the list
+ */
 public class Deque<Item> implements Iterable<Item> {
-	private int count = 0; // variable to keep track of the count
+	private int count = 0; // variable to keep track of the size
 	private Node first, last; // create a node
 
-// done
+	/**
+	 * Creates an empty deque
+	 */
 	public Deque() {
 		first = null;
 		last = null;
 	}
 
-// done
+	/**
+	 * Represents the creation of two nodes, a prev and next, and an item
+	 *
+	 */
 	private class Node {
 		Node prev; // previous node
 		Item item; // item
 		Node next; // next node
 	}
 
-// done: is the deque empty?
+	/**
+	 * Returns <code>true</code> if the first and last element of the list are null
+	 *
+	 * @return <code>true</code> if the first and last element of the list are null
+	 */
 	public boolean isEmpty() {
 		return (first == null && last == null);
 
 	}
 
-// done: return the number of items on the deque
+	/**
+	 * Returns the size of the list
+	 *
+	 * @return the size of the list
+	 */
 	public int size() {
 		return count;
 	}
 
-// done: add the item to the front
+	/**
+	 * Adds an element to the front of the list and increases the count variable
+	 * keeping track of the size
+	 *
+	 * @param item is the element to be added to the front of the list
+	 */
 	public void addFirst(Item item) {
 		if (item == null) {
-			throw new NullPointerException("Item is null");
+			throw new IllegalArgumentException("Item is null");
 		}
 		Node ogFirst = first;
 		first = new Node();
@@ -68,10 +77,15 @@ public class Deque<Item> implements Iterable<Item> {
 
 	}
 
-// done: add the item to the end
+	/**
+	 * Adds an element to the end of the list and increases the count variable
+	 * keeping track of the size
+	 *
+	 * @param item is the element to be added to the end of the list
+	 */
 	public void addLast(Item item) {
 		if (item == null) {
-			throw new NullPointerException("item is null");
+			throw new IllegalArgumentException("Item is null");
 		}
 		Node ogLast = last;
 		last = new Node();
@@ -91,7 +105,12 @@ public class Deque<Item> implements Iterable<Item> {
 
 	}
 
-// done: remove and return the item from the front
+	/**
+	 * Removes an element from the front of the list and decreases the count
+	 * variable keeping track of the size
+	 *
+	 * @return the element removed from the front of the list
+	 */
 	public Item removeFirst() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("it's empty so can't execute code");
@@ -109,7 +128,12 @@ public class Deque<Item> implements Iterable<Item> {
 		return back;
 	}
 
-// done: remove and return the item from the end
+	/**
+	 * Removes an element from the end of the list and decreases the count variable
+	 * keeping track of the size
+	 *
+	 * @return the element removed from the end of the list
+	 */
 	public Item removeLast() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("it's empty so can't execute code");
@@ -127,11 +151,16 @@ public class Deque<Item> implements Iterable<Item> {
 		return back;
 	}
 
-// return an iterator over items in order from front to end
+	/**
+	 * Creates a new ListIterator
+	 */
 	public Iterator<Item> iterator() {
 		return new ListIterator();
 	}
 
+	/**
+	 * Represents an iterator which allows the traversal through the list of items
+	 */
 	private class ListIterator implements Iterator<Item> {
 		private Node current = first;
 
@@ -149,6 +178,7 @@ public class Deque<Item> implements Iterable<Item> {
 			return elem;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException("opperation is unsupported");
 		}
